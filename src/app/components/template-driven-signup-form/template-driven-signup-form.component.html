@@ -1,0 +1,196 @@
+
+<div class="card">
+  <div class="card-header">
+    Sign Up For Company Benefits!
+  </div>
+
+  <div class="card-body">
+    <form novalidate
+          (ngSubmit)="save(signupForm)"
+          #signupForm="ngForm">
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label"
+               for="firstNameId">First Name</label>
+        <div class="col-md-8">
+          <input class="form-control"
+                 id="firstNameId"
+                 type="text"
+                 placeholder="First Name (required)"
+                 required
+                 minlength="5"
+                 [(ngModel)]=customer.firstName
+                 name="firstName"
+                 #firstNameVar="ngModel"
+                 [ngClass]="{'is-invalid': (firstNameVar.touched || firstNameVar.dirty) && !firstNameVar.valid }" />
+          <span class="invalid-feedback">
+            <span *ngIf="firstNameVar.errors?.required">
+              Please enter your first name.
+            </span>
+            <span *ngIf="firstNameVar.errors?.minlength">
+              The first name must be longer than 5 characters.
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label"
+               for="lastNameId">Last Name</label>
+        <div class="col-md-8">
+          <input class="form-control"
+                 id="lastNameId"
+                 type="text"
+                 placeholder="Last Name (required)"
+                 required
+                 maxlength="50"
+                 [(ngModel)]="customer.lastName"
+                 name="lastName"
+                 #lastNameVar="ngModel"
+                 [ngClass]="{'is-invalid': (lastNameVar.touched || lastNameVar.dirty) && !lastNameVar.valid }" />
+          <span class="invalid-feedback">
+            <span *ngIf="lastNameVar.errors?.required">
+              Please enter your last name.
+            </span>
+            <span *ngIf="lastNameVar.errors?.maxlength">
+              The last name must be less than 50 characters.
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label"
+               for="emailId">Email</label>
+        <div class="col-md-8">
+          <input class="form-control"
+                 id="emailId"
+                 type="email"
+                 placeholder="Email (required)"
+                 required
+                 email
+                 [(ngModel)]="customer.email"
+                 name="email"
+                 #emailVar="ngModel"
+                 [ngClass]="{'is-invalid': (emailVar.touched || emailVar.dirty) && !emailVar.valid }" />
+          <span class="invalid-feedback">
+            <span *ngIf="emailVar.errors?.required">
+              Please enter your email address.
+            </span>
+            <span *ngIf="emailVar.errors?.email">
+              Please enter a valid email address.
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <div class="col-md-8">
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input"
+                     id="addDependantId"
+                     type="checkbox"
+                     [(ngModel)]="customer.addDependant"
+                     name="addDependant">Add A Dependant
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="customer.addDependant">
+        <div class="form-group row mb-2">
+          <label class="col-md-2 col-form-label pt-0">Dependant Relationship</label>
+          <div class="col-md-8">
+            <div class="form-check form-check-inline">
+              <label class="form-check-label">
+                <input class="form-check-input"
+                       id="dependantTypeId"
+                       type="radio"
+                       value="spouse"
+                       [(ngModel)]="customer.dependantType"
+                       name="dependantType"> Spouse
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label">
+                <input class="form-check-input"
+                       id="dependantTypeId"
+                       type="radio"
+                       value="child"
+                       [(ngModel)]="customer.dependantType"
+                       name="dependantType"> Child
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <label class="form-check-label">
+                <input class="form-check-input"
+                       id="dependantTypeId"
+                       type="radio"
+                       value="freeloader"
+                       [(ngModel)]="customer.dependantType"
+                       name="dependantType"> Freeloader
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-md-2 col-form-label"
+                 for="dependantNameId">Dependant Name </label>
+          <div class="col-md-8">
+            <input class="form-control"
+                   id="dependantNameId"
+                   type="text"
+                   placeholder="Dependant Name"
+                   [(ngModel)]="customer.dependantName"
+                   name="dependantName">
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-md-2 col-form-label"
+                 for="dependantAgeId">Dependant Age</label>
+          <div class="col-md-8">
+            <input class="form-control"
+                   id="dependantAgeId"
+                   type="text"
+                   placeholder="Dependant Age"
+                   [(ngModel)]="customer.dependantAge"
+                   name="dependantAge">
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-md-2 col-form-label"
+                 for="dependantSSNId">Dependant SSN</label>
+          <div class="col-md-8">
+            <input class="form-control"
+                   id="dependantSSNId"
+                   type="text"
+                   placeholder="Dependant SSN"
+                   [(ngModel)]="customer.dependantSocialSecurityNumber"
+                   name="dependantSocialSecurityNumber">
+          </div>
+        </div>
+
+      </div>
+
+      <div class="form-group row mb-2">
+        <div class="offset-md-2 col-md-4">
+          <button class="btn btn-primary mr-3"
+                  type="submit"
+                  style="width:80px"
+                  [title]="signupForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+                  [disabled]="!signupForm.valid">
+            Save
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<br>Dirty: {{ signupForm.dirty }}
+<br>Touched: {{ signupForm.touched }}
+<br>Valid: {{ signupForm.valid }}
+<br>Value: {{ signupForm.value | json }}
