@@ -7,15 +7,10 @@
       TODO: Add a reference to the signUpForm
     -->
     <div class="card-body">
-      <form novalidate
-            (ngSubmit)="save()"
-            [formGroup]="employeeForm">
+      <form novalidate>
         <!--
         TODO: Bind each input to its respective field for the data model
-        TODO: Bind each input to [(ngModel)]
-        TODO: Add a template reference, e.g. #firstNameVar="ngModel"
-        TODO: Add an [ngClass] to style when some error occurs and add HTML5 input attributes for validation
-        such as required, maxlength, minlength, etc.
+        TODO: Add an [ngClass] to style when some error occurs
         TODO: Add *ngIf to display an error message for different errors
         TODO: Set the 'name' attribute on each input appropriately
         -->
@@ -27,18 +22,9 @@
             <input class="form-control"
                    id="firstNameId"
                    type="text"
-                   placeholder="First Name (required)"
-                   formControlName="firstName"
-                   [ngClass]="{'is-invalid': (employeeForm.get('firstName').touched ||
-                                              employeeForm.get('firstName').dirty) &&
-                                              !employeeForm.get('firstName').valid }" />
+                   placeholder="First Name (required)" />
             <span class="invalid-feedback">
-              <span *ngIf="employeeForm.get('firstName').errors?.required">
-                Please enter your first name.
-              </span>
-              <span *ngIf="employeeForm.get('firstName').errors?.minlength">
-                The first name must be longer than 3 characters.
-              </span>
+
             </span>
           </div>
         </div>
@@ -50,18 +36,9 @@
             <input class="form-control"
                    id="lastNameId"
                    type="text"
-                   placeholder="Last Name (required)"
-                   formControlName="lastName"
-                   [ngClass]="{'is-invalid': (employeeForm.get('lastName').touched ||
-                                              employeeForm.get('lastName').dirty) &&
-                                              !employeeForm.get('lastName').valid }" />
+                   placeholder="Last Name (required)" />
             <span class="invalid-feedback">
-              <span *ngIf="employeeForm.get('lastName').errors?.required">
-                Please enter your last name.
-              </span>
-              <span *ngIf="employeeForm.get('lastName').errors?.maxlength">
-                The last name must be less than 50 characters.
-              </span>
+
             </span>
           </div>
         </div>
@@ -74,11 +51,8 @@
               <input class="form-control"
                      id="emailId"
                      type="email"
-                     placeholder="Email (required)"
-                     formControlName="email"
-                     [ngClass]="{'is-invalid': emailMessage }" />
+                     placeholder="Email (required)" />
               <span class="invalid-feedback">
-                {{ emailMessage }}
               </span>
             </div>
           </div>
@@ -90,19 +64,9 @@
               <input class="form-control"
                      id="confirmEmailId"
                      type="email"
-                     placeholder="Confirm Email (required)"
-                     formControlName="confirmEmail"
-                     [ngClass]="{'is-invalid': employeeForm.get('emailGroup').errors ||
-                                               ((employeeForm.get('emailGroup.confirmEmail').touched ||
-                                                employeeForm.get('emailGroup.confirmEmail').dirty) &&
-                                                !employeeForm.get('emailGroup.confirmEmail').valid) }" />
+                     placeholder="Confirm Email (required)" />
               <span class="invalid-feedback">
-                <span *ngIf="employeeForm.get('emailGroup.confirmEmail').errors?.required">
-                  Please confirm your email address.
-                </span>
-                <span *ngIf="employeeForm.get('emailGroup').errors?.match">
-                  The confirmation does not match the email address.
-                </span>
+
               </span>
             </div>
           </div>
@@ -122,10 +86,10 @@
         </div>
 
         <div *ngIf="employeeForm.get('addDependant').value">
-          <div formArrayName="dependants">
-
-            <div [formGroupName]="i"
-                 *ngFor="let dependant of dependants.controls; let i=index">
+          <!-- TODO: The div below should have some formArrayName -->
+          <div >
+            <!-- TODO: Loop over the formArray here -->
+            <div [formGroupName]="i">
               <div class="form-group row mb-2">
                 <label class="col-md-2 col-form-label pt-0">Dependant Relationship</label>
                 <div class="col-md-8">
@@ -166,15 +130,9 @@
                   <input class="form-control"
                          id="{{ 'dependantNameId' + i }}"
                          type="text"
-                         placeholder="Dependant Name (required)"
-                         formControlName="dependantName"
-                         [ngClass]="{'is-invalid': (dependant.controls.dependantName.touched ||
-                                                    dependant.controls.dependantName.dirty) &&
-                                                    !dependant.controls.dependantName.valid }">
+                         placeholder="Dependant Name (required)">
                   <span class="invalid-feedback">
-                    <span *ngIf="dependant.controls.dependantName.errors?.required">
-                      Please enter your dependant's name.
-                    </span>
+
                   </span>
                 </div>
               </div>
@@ -186,15 +144,9 @@
                   <input class="form-control"
                           id="{{ 'dependantAgeId' + i }}"
                           type="text"
-                          placeholder="Dependant Age (required)"
-                          formControlName="dependantAge"
-                          [ngClass]="{'is-invalid': (dependant.controls.dependantAge.touched ||
-                                                    dependant.controls.dependantAge.dirty) &&
-                                                    !dependant.controls.dependantAge.valid }">
+                          placeholder="Dependant Age (required)">
                     <span class="invalid-feedback">
-                      <span *ngIf="dependant.controls.dependantAge.errors?.required">
-                        Please enter your dependant's age.
-                      </span>
+
                     </span>
                   </div>
                 </div>
@@ -207,14 +159,9 @@
                             id="{{ 'dependantSSNId' + i }}"
                             type="text"
                             placeholder="SSN (required)"
-                            formControlName="dependantSocialSecurityNumber"
-                            [ngClass]="{'is-invalid': (dependant.controls.dependantSocialSecurityNumber.touched ||
-                                                      dependant.controls.dependantSocialSecurityNumber.dirty) &&
-                                                      !dependant.controls.dependantSocialSecurityNumber.valid }">
+                            formControlName="dependantSocialSecurityNumber">
                       <span class="invalid-feedback">
-                        <span *ngIf="dependant.controls.dependantAge.errors?.required">
-                          Please enter your dependant's age.
-                        </span>
+
                       </span>
                     </div>
                   </div>
