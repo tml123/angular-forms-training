@@ -5,10 +5,20 @@
   </div>
 
   <div class="card-body">
-    <form novalidate
-          (ngSubmit)="save(signupForm)"
-          #signupForm="ngForm">
-
+    <!--
+      TODO: Bind the ngSubmit to the method your create to save
+      TODO: Add a reference to the signUpForm
+    -->
+    <form novalidate>
+      <!--
+        TODO: Bind each input to its respective field for the data model
+        TODO: Bind each input to [(ngModel)]
+        TODO: Add a template reference, e.g. #firstNameVar="ngModel"
+        TODO: Add an [ngClass] to style when some error occurs and add HTML5 input attributes for validation
+        such as required, maxlength, minlength, etc.
+        TODO: Add *ngIf to display an error message for different errors
+        TODO: Set the 'name' attribute on each input appropriately
+      -->
       <div class="form-group row mb-2">
         <label class="col-md-2 col-form-label"
                for="firstNameId">First Name</label>
@@ -18,18 +28,8 @@
                  type="text"
                  placeholder="First Name (required)"
                  required
-                 minlength="5"
-                 [(ngModel)]=customer.firstName
-                 name="firstName"
-                 #firstNameVar="ngModel"
-                 [ngClass]="{'is-invalid': (firstNameVar.touched || firstNameVar.dirty) && !firstNameVar.valid }" />
+                 minlength="5" />
           <span class="invalid-feedback">
-            <span *ngIf="firstNameVar.errors?.required">
-              Please enter your first name.
-            </span>
-            <span *ngIf="firstNameVar.errors?.minlength">
-              The first name must be longer than 5 characters.
-            </span>
           </span>
         </div>
       </div>
@@ -41,20 +41,8 @@
           <input class="form-control"
                  id="lastNameId"
                  type="text"
-                 placeholder="Last Name (required)"
-                 required
-                 maxlength="50"
-                 [(ngModel)]="customer.lastName"
-                 name="lastName"
-                 #lastNameVar="ngModel"
-                 [ngClass]="{'is-invalid': (lastNameVar.touched || lastNameVar.dirty) && !lastNameVar.valid }" />
+                 placeholder="Last Name (required)" />
           <span class="invalid-feedback">
-            <span *ngIf="lastNameVar.errors?.required">
-              Please enter your last name.
-            </span>
-            <span *ngIf="lastNameVar.errors?.maxlength">
-              The last name must be less than 50 characters.
-            </span>
           </span>
         </div>
       </div>
@@ -67,19 +55,9 @@
                  id="emailId"
                  type="email"
                  placeholder="Email (required)"
-                 required
-                 email
-                 [(ngModel)]="customer.email"
-                 name="email"
-                 #emailVar="ngModel"
-                 [ngClass]="{'is-invalid': (emailVar.touched || emailVar.dirty) && !emailVar.valid }" />
+                 email />
           <span class="invalid-feedback">
-            <span *ngIf="emailVar.errors?.required">
-              Please enter your email address.
-            </span>
-            <span *ngIf="emailVar.errors?.email">
-              Please enter a valid email address.
-            </span>
+
           </span>
         </div>
       </div>
@@ -97,8 +75,10 @@
           </div>
         </div>
       </div>
-
-      <div *ngIf="customer.addDependant">
+      <!--
+        TODO: Only display this when addDependant is true
+      -->
+      <div *ngIf="false">
         <div class="form-group row mb-2">
           <label class="col-md-2 col-form-label pt-0">Dependant Relationship</label>
           <div class="col-md-8">

@@ -1,6 +1,5 @@
 import { Customer } from '../../customer';
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-template-driven-signup-form',
@@ -16,9 +15,7 @@ export class TemplateDrivenSignupFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  save(customerForm: NgForm) {
-    console.log(customerForm.form);
-    console.log('Saved: ' + JSON.stringify(customerForm.value));
-  }
+  // add a method to save()
+  // it should take an NgForm as a param
 
 }
