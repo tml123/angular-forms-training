@@ -24,6 +24,15 @@ function ratingRange(min: number, max: number): ValidatorFn {
     return null;
   };
 }
+
+function phoneNumberMatcher(pattern: RegExp): ValidatorFn {
+  return (c: AbstractControl): { [key: string]: boolean } | null => {
+    if ((c.value as string).match(pattern)) {
+      return null;
+    }
+    return { phonePattern: true };
+  };
+}
 @Component({
   selector: 'app-reactive-signup-form',
   templateUrl: './reactive-signup-form.component.html',
@@ -49,6 +58,7 @@ export class ReactiveSignupFormComponent implements OnInit {
     this.employeeForm = this.fb.group({
       firstName: ['', [Validators.required, Validators.minLength(3)]],
       lastName: ['', [Validators.required, Validators.maxLength(50)]],
+      phone: ['', [Validators.required, phoneNumberMatcher(/\d{3}-\d{3}-\d{4}$/)]],
       emailGroup: this.fb.group({
         email: ['', [Validators.required, Validators.email]],
         confirmEmail: ['', Validators.required],

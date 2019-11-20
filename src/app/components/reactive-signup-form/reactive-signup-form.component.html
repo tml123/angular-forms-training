@@ -66,6 +66,30 @@
           </div>
         </div>
 
+        <div class="form-group row mb-2">
+          <label class="col-md-2 col-form-label"
+                 for="phoneId">Phone</label>
+          <div class="col-md-8">
+            <input class="form-control"
+                   id="phoneId"
+                   type="tel"
+                   placeholder="Phone (required)"
+                   formControlName="phone"
+                   [ngClass]="{'is-invalid': (employeeForm.get('phone').touched ||
+                                              employeeForm.get('phone').dirty) &&
+                                              !employeeForm.get('phone').valid }" />
+            <span class="invalid-feedback">
+              <span *ngIf="employeeForm.get('phone').errors?.required">
+                Please enter your phone number.
+                {{ employeeForm.get('phone').errors | json }}
+              </span>
+              <span *ngIf="employeeForm.get('phone').errors?.phonePattern">
+                Pattern does not match
+              </span>
+            </span>
+          </div>
+        </div>
+
         <div formGroupName="emailGroup">
           <div class="form-group row mb-2">
             <label class="col-md-2 col-form-label"

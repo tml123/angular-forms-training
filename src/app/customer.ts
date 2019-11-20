@@ -4,6 +4,7 @@ export class Customer {
     public firstName = '',
     public lastName = '',
     public email = '',
+    public phone = '',
     public addDependant = false,
     public dependantType = 'spouse',
     public dependantName?: string,
